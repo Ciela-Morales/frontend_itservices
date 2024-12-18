@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>IT Services</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="../design2.css" />
+		<style>
+			/* Optional: Add some basic styling for component loading */
+			.component-loading {
+				opacity: 0.5;
+				pointer-events: none;
+			}
+			.component-error {
+				background-color: #ffdddd;
+				border: 1px solid #ff0000;
+				padding: 10px;
+				margin: 10px 0;
+			}
+		</style>
+	</head>
+	<body class="bg-white text-gray-900">
+		<!-- Component Containers -->
+		<div id="navigationBar"></div>
+
+		<section class="bg-[#201e43] text-white min-h-screen flex items-center">
+			<div
+				class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between"
+			>
+				<div class="md:w-1/2 mb-10 md:mb-0">
+					<h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+						Kung Libog Na, Patabang Na!
+					</h2>
+					<p class="text-base md:text-xl text-gray-300 mb-8 text-justify">
+						This Business is both a "helping hand" & A "Support System"
+						essentially for those Aspiring IT Students. To counsel, guide, and
+						support them with their growing passion and abilities.
+					</p>
+					<div class="flex justify-center md:justify-start space-x-4">
+						<a
+							href="products.html"
+							class="bg-blue-600 text-white px-6 md:px-8 py-2 md:py-3 rounded-full hover:bg-blue-700"
+						>
+							Explore Products
+						</a>
+						<a
+							href="services.html"
+							class="border-2 border-blue-600 bg-white text-[#201e43] px-6 md:px-8 py-2 md:py-3 rounded-full hover:bg-blue-50"
+						>
+							Our Services
+						</a>
+					</div>
+				</div>
+
+				<div class="md:w-1/2 flex justify-center">
+					<img
+						src="/PICTURES/Class2.png"
+						alt="Class Image"
+						class="w-full max-w-[500px] object-cover transform hover:scale-105 transition duration-300"
+					/>
+				</div>
+			</div>
+		</section>
+		<!-- <div id="hero-section"></div> -->
+		<div id="home-products"></div>
+		<div id="home-services"></div>
+		<div id="home-values"></div>
+
+		<div class="signupbottom-details">
+			<div class="signupbottom_text bg-[#201e43]">
+				<span class="signupcopyright_text"
+					>&#169; <a href="#">IT Services.</a> All rights reserved 2024</span
+				>
+				<span class="signuppolicy_terms">
+					<a href="#">Terms & Conditions</a>
+				</span>
+			</div>
+		</div>
+
+		<script>
+			// Comprehensive Component Loading Utility
+			const ComponentLoader = {
+				// Configuration for components
+				components: [
+					{
+						id: "navigationBar",
+						path: "../components/nav.html",
+						optional: false,
+					},
+					{
+						id: "home-products",
+						path: "../components/home-products.html",
+						optional: false,
+					},
+					{
+						id: "home-services",
+						path: "../components/home-services.html",
+						optional: false,
+					},
+
+					{
+						id: "home-values",
+						path: "../components/home-values.html",
+						optional: false,
+					},
+				],
+
+				// Utility to create error message
+				createErrorMessage(componentId, error) {
+					return `
+						<div class="component-error">
+							<h3>Failed to Load Component: ${componentId}</h3>
+							<p>${error.message}</p>
+						</div>
+					`;
+				},
+
+				// Execute scripts within a loaded component
+				executeScripts(container) {
+					const scripts = container.querySelectorAll("script");
+					scripts.forEach((script) => {
+						const newScript = document.createElement("script");
+
+						// Handle inline and external scripts
+						if (script.src) {
+							newScript.src = script.src;
+						} else {
+							newScript.textContent = script.textContent;
+						}
+
+						document.body.appendChild(newScript);
+					});
+				},
+
+				// Main component loading method
+				async loadComponent(component) {
+					const container = document.getElementById(component.id);
+
+					if (!container) {
+						if (!component.optional) {
+							console.error(`Critical container missing: ${component.id}`);
+						}
+						return;
+					}
+
+					try {
+						// Add loading state
+						container.classList.add("component-loading");
+
+						// Fetch component
+						const response = await fetch(component.path);
+
+						if (!response.ok) {
+							throw new Error(`HTTP error! status: ${response.status}`);
+						}
+
+						// Load HTML content
+						const html = await response.text();
+						container.innerHTML = html;
+
+						// Execute any scripts
+						this.executeScripts(container);
+
+						// Remove loading state
+						container.classList.remove("component-loading");
+					} catch (error) {
+						console.error(`Component load error: ${component.id}`, error);
+
+						// Handle non-optional component failure
+						if (!component.optional) {
+							container.innerHTML = this.createErrorMessage(
+								component.id,
+								error
+							);
+						}
+					}
+				},
+
+				// Initialize component loading
+				async init() {
+					try {
+						// Load components sequentially
+						for (const component of this.components) {
+							await this.loadComponent(component);
+						}
+					} catch (error) {
+						console.error("Critical error in component loading:", error);
+					}
+				},
+			};
+
+			// Initialize component loader when DOM is ready
+			document.addEventListener("DOMContentLoaded", () => {
+				ComponentLoader.init();
+			});
+		</script>
+
+		<!-- Optional: Global application script -->
+		<script src="../script.js"></script>
+	</body>
+</html>

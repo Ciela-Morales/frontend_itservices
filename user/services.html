@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>IT Services</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="../design2.css" />
+	</head>
+	<body class="bg-white text-gray-900 font-sans">
+		<!-- Components -->
+		<div id="navigationBar"></div>
+
+		<!-- Services Hero Section -->
+		<header class="pt-24 container mx-auto px-6 mb-16">
+			<div class="text-center">
+				<h1 class="text-5xl font-bold text-[#201e43] mb-6">
+					Empowering Students Through Tech Support
+				</h1>
+				<p class="text-xl text-gray-600 max-w-3xl mx-auto">
+					Comprehensive IT support tailored specifically for college students,
+					helping you navigate the ever-evolving world of technology and
+					academic computing.
+				</p>
+			</div>
+		</header>
+
+		<!-- Service Categories -->
+		<section class="container mx-auto px-6 mb-16">
+			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+				<!-- Basic Tech Support Card -->
+				<div
+					class="bg-white border border-gray-200 rounded-xl p-8 text-center shadow-sm hover:shadow-md transition-all group"
+				>
+					<div
+						class="bg-[#201e43] w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+					>
+						<i class="fas fa-laptop-medical text-5xl text-white"></i>
+					</div>
+					<h3 class="text-2xl font-bold text-gray-800 mb-4">
+						Basic Tech Support
+					</h3>
+					<p class="text-gray-600 mb-6">
+						Comprehensive diagnostic and repair services for students' devices,
+						ensuring smooth academic workflow.
+					</p>
+					<ul class="text-left text-gray-700 space-y-2 mb-6">
+						<li class="flex items-center">
+							<i class="fas fa-check text-blue-600 mr-2"></i>Device Diagnostics
+						</li>
+						<li class="flex items-center">
+							<i class="fas fa-check text-blue-600 mr-2"></i>Software
+							Troubleshooting
+						</li>
+						<li class="flex items-center">
+							<i class="fas fa-check text-blue-600 mr-2"></i>Emergency Repairs
+						</li>
+					</ul>
+					<button
+						class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors service-buttons"
+					>
+						Learn More
+					</button>
+				</div>
+
+				<!-- Peer Mentorship Card -->
+				<div
+					class="bg-white border border-gray-200 rounded-xl p-8 text-center shadow-sm hover:shadow-md transition-all group"
+				>
+					<div
+						class="bg-[#201e43] w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+					>
+						<i class="fas fa-users text-5xl text-white"></i>
+					</div>
+					<h3 class="text-2xl font-bold text-gray-800 mb-4">Peer Mentorship</h3>
+					<p class="text-gray-600 mb-6">
+						Connect with experienced tech peers who provide guidance, coding
+						support, and career development insights.
+					</p>
+					<ul class="text-left text-gray-700 space-y-2 mb-6">
+						<li class="flex items-center">
+							<i class="fas fa-check text-blue-600 mr-2"></i>Code Review
+						</li>
+						<li class="flex items-center">
+							<i class="fas fa-check text-blue-600 mr-2"></i>Tech Career Advice
+						</li>
+						<li class="flex items-center">
+							<i class="fas fa-check text-blue-600 mr-2"></i>Study Group Support
+						</li>
+					</ul>
+					<button
+						class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors service-buttons"
+					>
+						Learn More
+					</button>
+				</div>
+
+				<!-- Academic Support Card -->
+				<div
+					class="bg-white border border-gray-200 rounded-xl p-8 text-center shadow-sm hover:shadow-md transition-all group"
+				>
+					<div
+						class="bg-[#201e43] w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+					>
+						<i class="fas fa-graduation-cap text-5xl text-white"></i>
+					</div>
+					<h3 class="text-2xl font-bold text-gray-800 mb-4">
+						Academic Support
+					</h3>
+					<p class="text-gray-600 mb-6">
+						Technology-enhanced learning support to help students excel in their
+						academic and technical pursuits.
+					</p>
+					<ul class="text-left text-gray-700 space-y-2 mb-6">
+						<li class="flex items-center">
+							<i class="fas fa-check text-blue-600 mr-2"></i>Software Training
+						</li>
+						<li class="flex items-center">
+							<i class="fas fa-check text-blue-600 mr-2"></i>Research Tool
+							Guidance
+						</li>
+						<li class="flex items-center">
+							<i class="fas fa-check text-blue-600 mr-2"></i>Digital Learning
+							Support
+						</li>
+					</ul>
+					<button
+						class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors service-buttons"
+					>
+						Learn More
+					</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- Service Modal -->
+		<div
+			id="serviceModal"
+			class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4"
+		>
+			<div
+				class="bg-white rounded-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto p-8 relative"
+			>
+				<button
+					id="closeModal"
+					class="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
+				>
+					<i class="fas fa-times text-2xl"></i>
+				</button>
+				<div id="modalContent">
+					<!-- Dynamic content will be inserted here -->
+				</div>
+			</div>
+		</div>
+
+		<!-- footer -->
+		<div class="signupbottom-details">
+			<div class="signupbottom_text bg-[#201e43]">
+				<span class="signupcopyright_text"
+					>&#169; <a href="#">IT Services.</a> All rights reserved 2024</span
+				>
+				<span class="signuppolicy_terms">
+					<a href="#">Terms & Conditions</a>
+				</span>
+			</div>
+		</div>
+		<script>
+			// new
+			// Dynamically load HTML components and their respective scripts
+			async function loadComponents() {
+				const components = [
+					{ id: "navigationBar", path: "../components/nav.html" },
+				];
+
+				try {
+					for (const component of components) {
+						const response = await fetch(component.path);
+						const html = await response.text();
+						document.getElementById(component.id).innerHTML = html;
+
+						// Execute inline scripts of the loaded component
+						executeInlineScripts(document.getElementById(component.id));
+					}
+				} catch (error) {
+					console.error("Error loading components:", error);
+				}
+			}
+
+			// Helper: Execute inline <script> tags of a loaded component
+			function executeInlineScripts(element) {
+				const scripts = element.querySelectorAll("script");
+				scripts.forEach((script) => {
+					const newScript = document.createElement("script");
+					newScript.textContent = script.textContent; // Re-execute inline JS
+					document.body.appendChild(newScript).remove(); // Clean up after execution
+				});
+			}
+
+			// Load components when the page is ready
+			document.addEventListener("DOMContentLoaded", loadComponents);
+		</script>
+		<script src="./js/services.js"></script>
+		<script src="../script.js"></script>
+	</body>
+</html>
